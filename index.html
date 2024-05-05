@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tools: austin_kden</title>
-<style>
-    body {
-        font-family: Helvetica, sans-serif;
-        text-align: left;
-        margin-left: 20px; /* Adjust as needed */
-        margin-top: 10px;
-    }
-    label {
-        font-size: 13px; /* Smaller font size as requested */
-        vertical-align: middle; /* Aligns text with the input vertically */
-        margin-right: 10px; /* Space between label and input */
-    }
-    input {
-        padding: 7px;
-        margin-bottom: 15px;
-        font-size: 13px;
-        border-radius: 5px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools: austin_kden</title>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            text-align: left;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        label {
+            font-size: 13px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        input {
+            padding: 7px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -40,9 +40,16 @@
     </div>
 
     <div>
-        <label for="proceduresInput">Procedures:</label>
-        <form id="proceduresForm" onsubmit="event.preventDefault(); locateProcedures();">
-            <input type="text" id="proceduresInput" placeholder="IATA Code" maxlength="3">
+        <label for="procedureInput">Procedures:</label>
+        <form id="procedureForm" onsubmit="event.preventDefault(); locateProcedure();">
+            <input type="text" id="procedureInput" placeholder="IATA Code" maxlength="3">
+        </form>
+    </div>
+
+    <div>
+        <label for="metarInput">METAR:</label>
+        <form id="metarForm" onsubmit="event.preventDefault(); locateMETAR();">
+            <input type="text" id="metarInput" placeholder="IATA Code" maxlength="3">
         </form>
     </div>
 
@@ -65,13 +72,22 @@
             window.open(`http://www.flightaware.com/resources/airport/K${airportCode}/APD/AIRPORT+DIAGRAM`, '_blank');
         }
 
-        function locateProcedures() {
-            let airportCode = document.getElementById('proceduresInput').value.toUpperCase();
+        function locateProcedure() {
+            let airportCode = document.getElementById('procedureInput').value.toUpperCase();
             if (airportCode.length !== 3) {
                 alert('Please enter a 3-letter airport code.');
                 return;
             }
             window.open(`https://www.flightaware.com/resources/airport/K${airportCode}/procedures`, '_blank');
+        }
+
+        function locateMETAR() {
+            let airportCode = document.getElementById('metarInput').value.toUpperCase();
+            if (airportCode.length !== 3) {
+                alert('Please enter a 3-letter IATA airport code.');
+                return;
+            }
+            window.open(`https://metar-taf.com/livestream/K${airportCode}`, '_blank');
         }
     </script>
 </body>
