@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waypoint Locator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    input {
+        padding: 10px;
+        margin: 20px;
+        font-size: 16px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+    <h1>Enter a 5-letter waypoint code (e.g., KIDNG) to locate</h1>
+    <input type="text" id="waypointInput" maxlength="5">
+    <button onclick="locateWaypoint()">Locate Waypoint</button>
+
+    <script>
+        function locateWaypoint() {
+            let waypoint = document.getElementById('waypointInput').value.toUpperCase();
+            if (waypoint.length !== 5) {
+                alert('Please enter a 5-letter waypoint code.');
+                return;
+            }
+
+            window.location.href = `https://opennav.com/waypoint/US/${waypoint}`;
+        }
+    </script>
+</body>
+</html>
