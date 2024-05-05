@@ -39,6 +39,13 @@
         </form>
     </div>
 
+    <div>
+        <label for="proceduresInput">Procedures:</label>
+        <form id="proceduresForm" onsubmit="event.preventDefault(); locateProcedures();">
+            <input type="text" id="proceduresInput" placeholder="IATA Code" maxlength="3">
+        </form>
+    </div>
+
     <script>
         function locateWaypoint() {
             let waypoint = document.getElementById('waypointInput').value.toUpperCase();
@@ -56,6 +63,15 @@
                 return;
             }
             window.open(`http://www.flightaware.com/resources/airport/K${airportCode}/APD/AIRPORT+DIAGRAM`, '_blank');
+        }
+
+        function locateProcedures() {
+            let airportCode = document.getElementById('proceduresInput').value.toUpperCase();
+            if (airportCode.length !== 3) {
+                alert('Please enter a 3-letter airport code.');
+                return;
+            }
+            window.open(`https://www.flightaware.com/resources/airport/K${airportCode}/procedures`, '_blank');
         }
     </script>
 </body>
