@@ -53,6 +53,13 @@
         </form>
     </div>
 
+    <div>
+        <label for="tafInput">TAF:</label>
+        <form id="tafForm" onsubmit="event.preventDefault(); locateTAF();">
+            <input type="text" id="tafInput" placeholder="IATA Code" maxlength="3">
+        </form>
+    </div>
+
     <script>
         function locateWaypoint() {
             let waypoint = document.getElementById('waypointInput').value.toUpperCase();
@@ -88,6 +95,15 @@
                 return;
             }
             window.open(`https://metar-taf.com/livestream/K${airportCode}`, '_blank');
+        }
+
+        function locateTAF() {
+            let airportCode = document.getElementById('tafInput').value.toUpperCase();
+            if (airportCode.length !== 3) {
+                alert('Please enter a 3-letter IATA airport code.');
+                return;
+            }
+            window.open(`https://metar-taf.com/TAF/K${airportCode}`, '_blank');
         }
     </script>
 </body>
