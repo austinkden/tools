@@ -9,6 +9,7 @@
         font-family: Helvetica, sans-serif;
         text-align: left;
         margin-left: 20px; /* Adjust as needed */
+        margin-top: 10px;
     }
     label {
         font-size: 13px; /* Smaller font size as requested */
@@ -25,16 +26,16 @@
 </head>
 <body>
     <div>
-        <label for="waypointInput">Waypoint Lookup:</label>
+        <label for="waypointInput">Waypoint/Fix:</label>
         <form id="waypointForm" onsubmit="event.preventDefault(); locateWaypoint();">
-            <input type="text" id="waypointInput" placeholder="Enter 5-letter Waypoint" maxlength="5" autofocus>
+            <input type="text" id="waypointInput" placeholder="Waypoint" maxlength="5" autofocus>
         </form>
     </div>
 
     <div>
-        <label for="airportInput">Airport Diagram Lookup:</label>
+        <label for="airportInput">Airport Diagram:</label>
         <form id="airportForm" onsubmit="event.preventDefault(); locateAirport();">
-            <input type="text" id="airportInput" placeholder="Enter 3-letter Airport Code" maxlength="3">
+            <input type="text" id="airportInput" placeholder="IATA Code" maxlength="3">
         </form>
     </div>
 
