@@ -15,16 +15,25 @@
         font-size: 12px;
     }
     button {
-        padding: 5px 10px;
+        padding: 5px
+        margin: 10px;
         font-size: 12px;
     }
 </style>
 </head>
 <body>
-    <input type="text" id="waypointInput" placeholder="Waypoint" maxlength="5">
-    <button onclick="locateWaypoint()">Locate Waypoint</button>
+    <!-- Wrap input and button in a form element -->
+    <form id="waypointForm">
+        <input type="text" id="waypointInput" placeholder="Waypoint" maxlength="5">
+        <button type="submit">Locate Waypoint</button>
+    </form>
 
     <script>
+        document.getElementById('waypointForm').onsubmit = function(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            locateWaypoint();
+        };
+
         function locateWaypoint() {
             let waypoint = document.getElementById('waypointInput').value.toUpperCase();
             if (waypoint.length !== 5) {
@@ -32,7 +41,8 @@
                 return;
             }
 
-            window.location.href = `https://opennav.com/waypoint/US/${waypoint}`;
+            // Use window.open to open the URL in a new tab
+            window.open(`https://opennav.com/waypoint/US/${waypoint}`, '_blank');
         }
     </script>
 </body>
