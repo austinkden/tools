@@ -74,6 +74,13 @@
         </form>
     </div>
 
+    <div>
+        <label for="flightAwareInput">FlightAware:</label>
+        <form id="flightAwareForm" onsubmit="event.preventDefault(); locateFlightAware();">
+            <input type="text" id="flightAwareInput" placeholder="IATA Code" maxlength="3">
+        </form>
+    </div>
+
     <script>
         function locateWaypoint() {
             let waypoint = document.getElementById('waypointInput').value.toUpperCase();
@@ -136,6 +143,16 @@
                 return;
             }
             window.open(`https://ourairports.com/airports/K${airportCode}/notams.html`, '_blank');
+        }
+
+        function locateFlightAware() {
+            let iataCode = document.getElementById('flightAwareInput').value.toUpperCase();
+            if (iataCode.length !== 3) {
+                alert('Please enter a 3-letter IATA airport code.');
+                return;
+            }
+            // Construct a FlightAware URL by searching for airports with matching ICAO or IATA codes
+            window.open(`https://flightaware.com/live/airport/?icao=${iataCode}&origin=icao`, '_blank');
         }
     </script>
 </body>
