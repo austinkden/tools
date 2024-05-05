@@ -7,27 +7,36 @@
 <style>
     body {
         font-family: Helvetica, sans-serif;
-        text-align: center;
+        text-align: left;
+        margin-left: 20px; /* Adjust as needed */
+    }
+    label {
+        font-size: 13px; /* Smaller font size as requested */
+        vertical-align: middle; /* Aligns text with the input vertically */
+        margin-right: 10px; /* Space between label and input */
     }
     input {
         padding: 7px;
-        margin: 15px;
+        margin-bottom: 15px;
         font-size: 13px;
         border-radius: 5px;
-        display: inline-block;
     }
 </style>
 </head>
 <body>
-    <h2>Waypoint Lookup</h2>
-    <form id="waypointForm" onsubmit="event.preventDefault(); locateWaypoint();">
-        <input type="text" id="waypointInput" placeholder="Enter 5-letter Waypoint" maxlength="5" autofocus>
-    </form>
+    <div>
+        <label for="waypointInput">Waypoint Lookup:</label>
+        <form id="waypointForm" onsubmit="event.preventDefault(); locateWaypoint();">
+            <input type="text" id="waypointInput" placeholder="Enter 5-letter Waypoint" maxlength="5" autofocus>
+        </form>
+    </div>
 
-    <h2>Airport Diagram Lookup</h2>
-    <form id="airportForm" onsubmit="event.preventDefault(); locateAirport();">
-        <input type="text" id="airportInput" placeholder="Enter 3-letter Airport Code" maxlength="3">
-    </form>
+    <div>
+        <label for="airportInput">Airport Diagram Lookup:</label>
+        <form id="airportForm" onsubmit="event.preventDefault(); locateAirport();">
+            <input type="text" id="airportInput" placeholder="Enter 3-letter Airport Code" maxlength="3">
+        </form>
+    </div>
 
     <script>
         function locateWaypoint() {
