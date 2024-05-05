@@ -14,30 +14,38 @@
         margin: 15px;
         font-size: 13px;
         border-radius: 5px;
+        display: inline-block;
     }
 </style>
 </head>
 <body>
-    <!-- Wrap input and button in a form element -->
-    <form id="waypointForm">
-        <input type="text" id="waypointInput" placeholder="Waypoint" maxlength="5">
+    <h2>Waypoint Lookup</h2>
+    <form id="waypointForm" onsubmit="event.preventDefault(); locateWaypoint();">
+        <input type="text" id="waypointInput" placeholder="Enter 5-letter Waypoint" maxlength="5" autofocus>
+    </form>
+
+    <h2>Airport Diagram Lookup</h2>
+    <form id="airportForm" onsubmit="event.preventDefault(); locateAirport();">
+        <input type="text" id="airportInput" placeholder="Enter 3-letter Airport Code" maxlength="3">
     </form>
 
     <script>
-        document.getElementById('waypointForm').onsubmit = function(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
-            locateWaypoint();
-        };
-
         function locateWaypoint() {
             let waypoint = document.getElementById('waypointInput').value.toUpperCase();
             if (waypoint.length !== 5) {
                 alert('Please enter a 5-letter waypoint code.');
                 return;
             }
-
-            // Use window.open to open the URL in a new tab
             window.open(`https://opennav.com/waypoint/US/${waypoint}`, '_blank');
+        }
+
+        function locateAirport() {
+            let airportCode = document.getElementById('airportInput').value.toUpperCase();
+            if (airportCode.length !== 3) {
+                alert('Please enter a 3-letter airport code.');
+                return;
+            }
+            window.open(`http://www.flightaware.com/resources/airport/K${airportCode}/APD/AIRPORT+DIAGRAM`, '_blank');
         }
     </script>
 </body>
