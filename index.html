@@ -82,6 +82,13 @@
             <input type="text" id="flightAwareInput" placeholder="IATA Code" maxlength="3">
         </form>
     </div>
+    
+    <div>
+        <label for="flightNumberInput">Flight Number:</label>
+        <form id="flightNumberForm" onsubmit="event.preventDefault(); locateFlight();">
+            <input type="text" id="flightNumberInput" placeholder="Flight Number" minlength="4" maxlength="9">
+        </form>
+    </div>
 
     <script>
         function locateWaypoint() {
@@ -153,8 +160,16 @@
                 alert('Please enter a 3-letter IATA airport code.');
                 return;
             }
-            // Construct a FlightAware URL by searching for airports with matching ICAO or IATA codes
             window.open(`https://flightaware.com/live/airport/K${iataCode}`, '_blank');
+        }
+
+        function locateFlight() {
+            let flightNumber = document.getElementById('flightNumberInput').value.toUpperCase();
+            if (flightNumber.length < 4 || flightNumber.length > 9) {
+                alert('Please enter a flight number between 4 and 9 characters.');
+                return;
+            }
+            window.open(`https://www.flightradar24.com/${flightNumber}`, '_blank');
         }
     </script>
 </body>
